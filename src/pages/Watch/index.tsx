@@ -18,7 +18,7 @@ export const Watch = () => {
     const maxScreenSizeWidth = window.innerWidth;
    
     return (
-        <div className="p-4 h-screen w-full flex gap-5 max-lg:flex-col">
+        <div className="p-4 h-full w-full flex gap-5 max-lg:flex-col">
             <div className="flex flex-col h-full rounded-lg w-9/12 max-lg:w-full gap-2 "> 
                 <ReactPlayer width='100%' height='70%'url={video_url} controls/>
 
@@ -31,7 +31,7 @@ export const Watch = () => {
                 </div>
             </div>
             
-            <div className="h-full rounded-lg w-3/12 grid grid-cols-1 gap-4 max-lg:w-full"> 
+            <div className="rounded-lg w-3/12 grid grid-cols-1 gap-4 max-lg:w-full"> 
                 {videos.map(elem => (
                     <ThumbnailContainer {...elem} noThumbFoto dontSetShowVideo horizontal={maxScreenSizeWidth >= 768} />
                 ))}

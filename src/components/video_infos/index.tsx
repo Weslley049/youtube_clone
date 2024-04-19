@@ -3,7 +3,14 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { IoIosMore } from "react-icons/io"
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { RiScissorsLine } from "react-icons/ri";
+import { BsFilterLeft } from "react-icons/bs";
+
+import { BiLike } from "react-icons/bi"
+import { BiDislike } from "react-icons/bi";
 import { calcularDiferencaDatas, formatarNumero } from "../../utils";
+import { comentarios } from "../../utils/video_infos";
+
+
 
 export interface VideoInfoInterface {
     title: string,
@@ -80,9 +87,59 @@ export const VideoInfo = (props: VideoInfoInterface) => {
                      <p className="text-sm"> 
                         {sinopse}
                      </p>
-            
             </div>
            
+            <div className="flex flex-col w-full gap-3 ">
+                <div className="flex w-full items-center gap-4">
+                    <p className="text-lg font-bold"> 2.121 comentários </p>
+
+                    <div className="flex gap-1">
+                        <BsFilterLeft size={25}/>
+                        <p className="text-base"> Ordenar por </p> 
+                    </div>    
+                </div>
+                        
+                <div className="flex w-full items-center gap-1">  
+                    <div className="w-9 h-9 rounded-full bg-green-700 flex items-center justify-center text-white 	"> 
+						W 
+					</div>
+
+                    <input className=' w-full border-b px-5 py-2.5 focus:border-b-2 text-sm' placeholder="Adicione um comentário"/>
+                </div>
+
+                <div className="w-full flex flex-col gap-4"> 
+                    {comentarios.map(({usuario, comentario,numero_like,timing}) => (
+                        <div className="w-full flex gap-2">
+                            <img src="thumb.webp" className="w-8 h-8 text-white rounded-full"/> 
+                        
+                            <div className="flex flex-col gap-3"> 
+                                <div className="flex items-center gap-2"> 
+                                    <a className="text-xs font-bold"> {usuario}</a>
+
+                                    <p className="text-xs text-slate-600"> {calcularDiferencaDatas(timing)}</p>
+                                </div>
+
+                                <div className="flex flex-wrap">
+                                    <p className="text-sm"> {comentario} </p>
+                                </div> 
+
+                                
+                                <div className="flex items-center gap-2">
+                                    <BiLike className='cursor-pointer' size={23}/>
+                                    <p className="text-xs"> {numero_like} </p>
+
+                                    <BiDislike className='cursor-pointer' size={23}/>
+                                   
+                                </div>      
+                            </div> 
+                        </div> 
+                        
+                      
+                    ))}
+                </div> 
+
+            </div>
+
         </div>
     )
 }
